@@ -1,0 +1,11 @@
+/* Animated tank water and map pulses */
+.tank { position: relative; overflow: hidden; border-radius: 1rem; background: #e3f1f4; border: 2px solid #0833441f; }
+.water { position: absolute; left: 0; right: 0; bottom: 0; --top: #38bdf8; background: linear-gradient(var(--top), #0e7490); transition: height .9s ease; }
+.water.low { --top: #fb7185; background: linear-gradient(#fb7185, #be123c); }
+.water::before, .water::after { content: ""; position: absolute; left: -50%; top: -14px; width: 200%; height: 28px; border-radius: 42%; background: var(--top); opacity: .55; animation: wave 7s linear infinite; }
+.water::after { animation-duration: 11s; animation-direction: reverse; opacity: .35; }
+@keyframes wave { to { transform: rotate(360deg); } }
+.map-pin { transform: translate(-50%, -50%); }
+.leak-pulse::after { content: ""; position: absolute; inset: -6px; border-radius: 9999px; border: 2px solid #f43f5e; animation: ping 1.4s ease-out infinite; }
+@keyframes ping { from { opacity: .8; transform: scale(.7); } to { opacity: 0; transform: scale(1.6); } }
+@media (prefers-reduced-motion: reduce) { .water::before, .water::after, .leak-pulse::after { animation: none; } .water { transition: none; } }
